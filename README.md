@@ -1,15 +1,3 @@
-# utils
+# @najmiter/utils
 
-To install dependencies:
-
-```bash
-bun install
-```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.3.8. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+A bunch of daily life utils that don't have any extra dependency but need to be copied every single time
