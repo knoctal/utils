@@ -193,6 +193,6 @@ class ContainManager {
    * console.log(Compare.does(obj1).contain(obj2)); // true
    */
   contain(obj: unknown): boolean {
-    return new SubsetManager(obj).subsetOf(this.daDoesObject);
+    return new SubsetManager([obj]).subsetOf(this.daDoesObject);
   }
 }

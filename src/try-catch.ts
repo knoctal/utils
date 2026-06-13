@@ -4,7 +4,7 @@
  * Intended for use in React components where we want to attempt to render something but if it fails,
  * we want to fail gracefully by returning null instead of throwing an error.
  */
-export function tryWithNull<T>(fn: () => T) {
+export function tryOrNull<T>(fn: () => T) {
   try {
     return fn();
   } catch {
@@ -15,8 +15,10 @@ export function tryWithNull<T>(fn: () => T) {
 /**
  * Calls an async function safely and returns an object with the data or error.
  *
- * */
-export async function tryWithNullAsync<T>(fn: () => Promise<T>) {
+ * @param fn The async function to call
+ * @returns An object with either the data or an error
+ */
+export async function tryCatch<T>(fn: () => Promise<T>) {
   try {
     return { data: await fn(), error: null } as { data: T; error: null };
   } catch (error) {
