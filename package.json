@@ -33,8 +33,7 @@
     "no-dependencies"
   ],
   "devDependencies": {
-    "@types/bun": "latest",
-    "dts-bundle-generator": "9.5.1"
+    "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5"
