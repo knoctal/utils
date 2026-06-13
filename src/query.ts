@@ -9,9 +9,9 @@ import { Compare } from './compare';
  * form for use in your application.
  */
 export class ParamManager {
-  private static _CURRENT_PARAM: Array<unknown> | null = null;
+  private static _CURRENT_PARAM?: readonly unknown[] | null = null;
 
-  static add(params: Array<object> | null) {
+  static add(params?: readonly unknown[] | null) {
     this._CURRENT_PARAM = params;
     return this;
   }
