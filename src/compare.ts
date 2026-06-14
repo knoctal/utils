@@ -13,7 +13,6 @@ const specialClasses = [URLSearchParams, FormData] as const;
  * - FormData
  * - Map
  * - Set
- * @author najmiter
  */
 export class Compare {
   /**
@@ -193,6 +192,32 @@ class ContainManager {
    * console.log(Compare.does(obj1).contain(obj2)); // true
    */
   contain(obj: unknown): boolean {
-    return new SubsetManager([obj]).subsetOf(this.daDoesObject);
+    return new SubsetManager(this.toArray(obj)).subsetOf(this.toArray(this.daDoesObject));
+  }
+
+  private toArray(obj: unknown): unknown[] {
+    if (Array.isArray(obj)) {
+      return obj;
+    }
+
+    if (obj instanceof Set) {
+      return obj.values().toArray();
+    }
+
+    if (obj instanceof Map) {
+      return obj.entries().toArray();
+    }
+
+    for (const Class of specialClasses) {
+      if (obj instanceof Class) {
+        return Array.from(obj.entries());
+      }
+    }
+
+    if (typeof obj === 'object' && obj !== null) {
+      return Object.entries(obj);
+    }
+
+    return [obj];
   }
 }

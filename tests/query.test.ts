@@ -1,5 +1,5 @@
 import { describe, expect, test, beforeEach } from 'bun:test';
-import { ParamManager } from './query';
+import { ParamManager } from '../src/query';
 
 describe('ParamManager (array params version)', () => {
   beforeEach(() => {
@@ -39,7 +39,9 @@ describe('ParamManager (array params version)', () => {
 
   describe('into()', () => {
     test('throws if keys is not array', () => {
-      expect(() => ParamManager.add([{ page: 1 }]).into('invalid' as any)).toThrow('Query Key object must be an array');
+      expect(() => ParamManager.add([{ page: 1 }]).into('invalid' as any)).toThrow(
+        'Query Keys object must be an array',
+      );
     });
 
     test('adds params array to empty keys', () => {
@@ -145,6 +147,17 @@ describe('ParamManager (array params version)', () => {
       ParamManager.add([{ page: 2 }]).into(keys);
 
       expect(keys).toEqual([[{ page: 1 }], [{ page: 2 }]]);
+    });
+
+    test('allows primitives in params array', () => {
+      const keys: unknown[] = [[1, 'test', false]];
+
+      ParamManager.add([1, 'test', true]).into(keys);
+
+      expect(keys).toEqual([
+        [1, 'test', false],
+        [1, 'test', true],
+      ]);
     });
   });
 });

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { Compare } from './compare';
+import { Compare } from '../src/compare';
 
 describe('Compare.deepCompare', () => {
   describe('primitives', () => {

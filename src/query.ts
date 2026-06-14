@@ -21,7 +21,7 @@ export class ParamManager {
       throw new Error('Query Keys object must be an array');
     }
 
-    if (!Compare.does(keys).contain(this._CURRENT_PARAM)) {
+    if (!Compare.does(keys).contain([this._CURRENT_PARAM])) {
       keys.push(structuredClone(this._CURRENT_PARAM));
     }
 
